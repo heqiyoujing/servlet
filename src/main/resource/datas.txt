@@ -1,0 +1,5 @@
+呵呵，你还不懂servlet的容器吧。首先，你的ReadTxt.java编译后生成的class文件是在web-inf下class这个文件夹下，也就是说web-inf下还有一个class文件夹，这个知道的吧，web容器加载class文件的时候，就是加载这个文件夹下的class文件。所以，你可以用class加载器得到这个class文件夹的路径，得到这个路径了你爱放book.txt在哪就放在哪。一般来说都是这样做的，如果要读取一些文件，一般是将这些文件放在class文件夹下，然后用class加载器来取路。
+ClassLoader cl = ReadTxt.class.getClassLoader();
+String Path = cl..getResource("txt/book.txt").toURI().getPath();
+记得将txt/book.txt放到class文件夹下。
+慢慢领悟，你行的。

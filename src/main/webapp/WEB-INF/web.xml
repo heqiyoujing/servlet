@@ -1,0 +1,102 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!--过滤器-->
+  <filter>
+    <filter-name>LogFilter</filter-name>
+    <filter-class>com.servlet.study.LogFilter</filter-class>
+    <init-param>
+      <param-name>Site</param-name>
+      <param-value>菜鸟教程</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>LogFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+   <!-- 注册针对ServletContext对象进行监听的监听器 -->
+   <listener>
+       <description>ServletContextListener监听器</description>
+       <!--实现了ServletContextListener接口的监听器类 -->
+       <listener-class>com.servlet.study.listener.MyServletContextListener</listener-class>
+   </listener>
+  <!--注册针对HttpSession对象进行监听的监听器-->
+  <listener>
+    <description>HttpSessionListener监听器</description>
+    <listener-class>com.servlet.study.listener.MyHttpSessionListener</listener-class>
+  </listener>
+  <!-- 配置HttpSession对象的销毁时机 -->
+  <session-config>
+    <!--配置HttpSession对象的1分钟之后销毁 -->
+    <session-timeout>1</session-timeout>
+  </session-config>
+  <!--注册针对ServletRequest对象进行监听的监听器-->
+  <listener>
+    <description>ServletRequestListener监听器</description>
+    <listener-class>com.servlet.study.listener.MyServletRequestListener</listener-class>
+  </listener>
+  <!--<listener>-->
+    <!--<description>MyServletContextAttributeListener监听器</description>-->
+    <!--<listener-class>com.servlet.study.attributeListener.MyServletContextAttributeListener</listener-class>-->
+  <!--</listener>-->
+  <!--<listener>-->
+    <!--<description>MyRequestAndSessionAttributeListener监听器</description>-->
+    <!--<listener-class>com.servlet.study.attributeListener.MyRequestAndSessionAttributeListener</listener-class>-->
+  <!--</listener>-->
+
+
+  <!--servlet-->
+  <servlet>
+    <description>This is the description of my J2ee component</description>
+    <display-name>This is the display name of my J2ee component</display-name>
+    <servlet-name>ServletStudy</servlet-name>
+    <servlet-class>com.servlet.study.ServletStudy</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletStudy</servlet-name>
+    <url-pattern>/servlet/ServletStudy</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UploadHandleServlet</servlet-name>
+    <servlet-class>com.servlet.study.servlet.UploadHandleServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UploadHandleServlet</servlet-name>
+    <url-pattern>/servlet/UploadHandleServlet</url-pattern>
+  </servlet-mapping>
+  <!--同一个Servlet可以被映射到多个URL上,也可以用通配符，一种是*.扩展名，一种是/* -->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>ServletStudy</servlet-name>-->
+    <!--<url-pattern>/servlet/1.html</url-pattern>-->
+  <!--</servlet-mapping>-->
+  <!--&lt;!&ndash; 将ServletDemo2配置成缺省Servlet &ndash;&gt;-->
+  <!--<servlet-mapping>-->
+    <!--<servlet-name>ServletStudy</servlet-name>-->
+    <!--<url-pattern>/</url-pattern>-->
+  <!--</servlet-mapping>-->
+
+  <!--异常处理-->
+  <!--<error-page>-->
+    <!--<error-code>404</error-code>-->
+    <!--<location>/servlet/ServletStudy</location>-->
+  <!--</error-page>-->
+  <!--<error-page>-->
+    <!--<exception-type>java.lang.Throwable</exception-type >-->
+    <!--<location>/servlet/ServletStudy</location>-->
+  <!--</error-page>-->
+  <welcome-file-list>
+         <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+
+</web-app>
